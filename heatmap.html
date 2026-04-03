@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "w1dy5oofou");
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой простой сайт</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        /* Шапка с навигацией */
+        .navbar {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-menu {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-menu button {
+            background: none;
+            border: none;
+            font-size: 18px;
+            padding: 10px 25px;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: all 0.3s;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .nav-menu button:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .nav-menu button.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        /* Контейнер для страниц */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .page.active-page {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Карточки с картинками */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-content h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .card-content p {
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: transform 0.2s;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Главная страница */
+        .hero {
+            text-align: center;
+            color: white;
+            padding: 60px 20px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .big-btn {
+            padding: 15px 40px;
+            font-size: 18px;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        
+        .big-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        /* О нас */
+        .about-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .about-content h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .about-content p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .team {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .member {
+            text-align: center;
+        }
+        
+        .member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #667eea;
+        }
+        
+        /* Контакты */
+        .contact-form {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+        
+        /* Футер */
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <div class="navbar">
+        <ul class="nav-menu">
+            <li><button class="nav-btn active" data-page="home">🏠 Главная</button></li>
+            <li><button class="nav-btn" data-page="gallery">🖼 Галерея</button></li>
+            <li><button class="nav-btn" data-page="about">📖 О нас</button></li>
+            <li><button class="nav-btn" data-page="contacts">📞 Контакты</button></li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <!-- Главная страница -->
+        <div id="home" class="page active-page">
+            <div class="hero">
+                <h1>Приветики!</h1>
+                <p>Сайтик с картиночками, кнопочками и страничками</p>
+                <button class="big-btn" onclick="alert('Привет! 1😊')">Кнопка 1!</button>
+                <button class="big-btn" onclick="alert('Привет! 2😊')">Кнопка 2!</button>
+                <button class="big-btn" onclick="alert('Привет! 3😊')">Кнопка 3!</button>
+            </div>
+        </div>
+        
+        <!-- Галерея -->
+        <div id="gallery" class="page">
+            <h2 style="color: white; text-align: center; margin-bottom: 30px;">Наша галерея</h2>
+            <div class="gallery">
+                <div class="card">
+                    <img src="https://cs17.pikabu.ru/s/2026/03/25/11/nvwvlnym.jpg" alt="Пейзаж">
+                    <div class="card-content">
+                        <h3>Горный пейзаж</h3>
+                        <p>Красивые горы и природа. Идеальное место для отдыха.</p>
+                        <button class="btn" onclick="alert('— И помните: если вы сорвались в пропасть, не забудьте посмотреть направо. Такой красоты вы больше нигде не увидите!')">Подробнее</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/53/7c/ae/537caed79c96fe6784ef4686c833d47b.jpg" alt="Море">
+                    <div class="card-content">
+                        <h3>Море и океан</h3>
+                        <p>Бескрайние водные просторы и пляжи.</p>
+                        <button class="btn" onclick="alert('— Ну и чего ты орёшь? Я тоже не умею играть на скрипке, но я же не кричу об этом на всё море!')">Подробнее</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeJEcnmw1D11Vbohr0ehszCHsUFIa-dNgUbg&s" alt="Цветы">
+                    <div class="card-content">
+                        <h3>Цветущий сад</h3>
+                        <p>Яркие краски и ароматы природы.</p>
+                        <button class="btn" onclick="alert('Вы выбрали цветы!')">Подробнее</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_i1bxHPIkK0w173nZxvgF_VCP5hrk-9A7QA&s" alt="Закат">
+                    <div class="card-content">
+                        <h3>Красивый закат</h3>
+                        <p>Волшебные моменты заката солнца.</p>
+                        <button class="btn" onclick="alert('Вы выбрали закат!')">Подробнее</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- О нас -->
+        <div id="about" class="page">
+            <div class="about-content">
+                <h2>О нашей команде</h2>
+                <p>ну типо в ней есть я !</p>
+                <p>в связи с этим, хорошей команде больше ничего и не надо.</p>
+                
+                <div class="team">
+                    <div class="member">
+                        <img src="https://www.sostav.ru/images/news/2018/06/15/zc9zvfgd.jpg" alt="Антон">
+                        <h3>Антон</h3>
+                        <p>Дизайнер </p>
+                    </div>
+                    <div class="member">
+                        <img src="https://sun9-12.userapi.com/s/v1/ig2/OdCqsJpvwcCdzm7-RJ7lGGDSWqdt2pOaPUW0M-Ksegzh9dYdz0AoQDcmthRvbHY-COfjLXowFaaGg9h7up6hUtbw.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440,1280x1707,1440x1920,1920x2560&from=bu&cs=1280x0" alt="Я">
+                        <h3>Я</h3>
+                        <p>Основатель</p>
+                    </div>
+                    <div class="member">
+                        <img src="https://reg.infobasket.su/Widget/GetPersonPhoto/396660" alt="Никитос">
+                        <h3>Никита</h3>
+                        <p>Разработчик</p>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="alert('Спасибо за интерес к нашей команде!')" style="margin-top: 30px;">Узнать больше</button>
+            </div>
+        </div>
+        
+        <!-- Контакты -->
+        <div id="contacts" class="page">
+            <div class="contact-form">
+                <h2 style="text-align: center; margin-bottom: 30px; color: #667eea;">Свяжитесь с нами</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label>Ваше имя</label>
+                        <input type="text" id="name" required placeholder="Введите ваше имя">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email" required placeholder="example@mail.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Сообщение</label>
+                        <textarea id="message" rows="5" required placeholder="Ваше сообщение..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">📩 Отправить</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; color: #666;">
+                    📞 Телефон: +7 (999) 123-45-67<br>
+                    📧 Email: info@mysite.ru<br>
+                    📍 Адрес: г. Омск, ул. Миллионеров, д. Единственный
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2026. Все права защищены.</p>
+    </div>
+    
+    <script>
+        // Переключение между страницами
+        const pages = ['home', 'gallery', 'about', 'contacts'];
+        const navButtons = document.querySelectorAll('.nav-btn');
+        
+        function showPage(pageId) {
+            // Скрыть все страницы
+            pages.forEach(page => {
+                const pageElement = document.getElementById(page);
+                if (pageElement) {
+                    pageElement.classList.remove('active-page');
+                }
+            });
+            
+            // Показать выбранную страницу
+            const activePage = document.getElementById(pageId);
+            if (activePage) {
+                activePage.classList.add('active-page');
+            }
+            
+            // Обновить активную кнопку
+            navButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-page') === pageId) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+        
+        // Добавить обработчики на кнопки
+        navButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const pageId = btn.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+        
+        // Обработка формы контактов
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                alert(`Спасибо, ${name}! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.`);
+                contactForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>
